@@ -1,0 +1,9 @@
+ci_access:
+  projects:
+    - id: library/kubernetes-agent-config
+  groups:
+    - id: dev
+#observability:
+#  logging:
+#    level: debug
+#    grpc_level: debug
