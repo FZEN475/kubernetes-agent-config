@@ -1,0 +1,28 @@
+
+variables:
+  CI_DEBUG_TRACE: "true"
+
+stages:
+  - test
+
+test:helm:job:
+  image:
+    name: "alpine/helm"
+    entrypoint: ["/bin/ash", "-c"]
+  stage: test
+  script:
+    - 'helm list -n dev --kubeconfig=$KUBECONFIG --kube-context=$KUBE_CONTEXT'
+    - 'helm list -n gitlab --kubeconfig=$KUBECONFIG --kube-context=$KUBE_CONTEXT'
+  needs: []
+
+test:kubectl:job:
+  image:
+    name: "bitnami/kubectl"
+    entrypoint: ["/bin/ash", "-c"]
+  stage: test
+  script:
+    - 'kubectl config use-context $KUBE_CONTEXT'
+    - 'kubectl get cm -n dev'
+    - 'kubectl get cm -n provisioners internal-nginx-ingress-nginx-tcp'
+    - 'kubectl get cm -n gitlab'
+  needs: []

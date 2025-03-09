@@ -1,0 +1,15 @@
+ci_access:
+  projects:
+    - id: dev/kubernetes-agent-config
+      protected_branches_only: false
+    - id: dev/flask-example-1
+      protected_branches_only: false
+    - id: dev/telebot-gpt
+      protected_branches_only: false
+  groups:
+    - id: dev
+      protected_branches_only: false
+#observability:
+#  logging:
+#    level: debug
+#    grpc_level: debug
